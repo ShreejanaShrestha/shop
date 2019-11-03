@@ -1,29 +1,23 @@
 import * as fromProductAction from '../actions/product.action';
+import { Product } from '../models/product.model';
+import { createReducer, on } from '@ngrx/store';
 
 export interface ProductState {
-  title: string;
-  price: string;
-  category: string;
+  products: Product[];
+  selectedProduct?: number;
 }
-
-export const initialState: ProductState = {
-  title: 'title',
-  price: '100',
-  category: 'tops'
+const initialState: ProductState = {
+  products: []
 };
 
-export function reducer(
-  state = initialState,
-  action: fromProductAction.ProductAction
-): ProductState {
-  switch (action.type) {
-    case fromProductAction.ADD_PRODUCT: {
-      return {
-        ...state
-      };
-    }
+const productReducer = createReducer(
+  initialState,
+  on(fromProductAction.addProduct, state => ({
+    ...state,
+    selectedProduct: undefined
+  }))
+);
 
-    default:
-      return state;
-  }
-}
+// export function reducer(state: ProductState | undefined, action: Action) {
+//   return productReducer(state, action);
+// }

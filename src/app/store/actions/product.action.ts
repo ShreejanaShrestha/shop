@@ -1,28 +1,13 @@
-import { Action } from '@ngrx/store';
-import { Product } from '../models/product';
+import { Action, createAction, props } from '@ngrx/store';
+import { Product } from '../models/product.model';
 import { from } from 'rxjs';
 
-export const ADD_PRODUCT = '[PRODUCT] Add Item';
-export const EDIT_PRODUCT = '[PRODUCT] Edit Item';
-export const DELETE_PRODUCT = '[PRODUCT] Delete Item';
+// export const ADD_PRODUCT = '[PRODUCT] Add Item';
+// export const EDIT_PRODUCT = '[PRODUCT] Edit Item';
+// export const DELETE_PRODUCT = '[PRODUCT] Delete Item';
 
-export class AddProductAction implements Action {
-  readonly type = ADD_PRODUCT;
-
-  constructor(public payload: Product) {}
-}
-
-export class EditProductAction implements Action {
-  readonly type = ADD_PRODUCT;
-
-  constructor(public payload: Product) {}
-}
-
-export class DeleteProductAction implements Action {
-  readonly type = ADD_PRODUCT;
-}
-
-export type ProductAction =
-  | AddProductAction
-  | EditProductAction
-  | DeleteProductAction;
+export const addProduct = createAction(
+  '[PRODUCT] Add Item',
+  (title: string, price: string, category: string) =>
+    ({ title, price, category } as Product)
+);

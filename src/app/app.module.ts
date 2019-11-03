@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CatalogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
