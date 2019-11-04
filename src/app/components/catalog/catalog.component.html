@@ -1,0 +1,14 @@
+<div>
+  <div>
+    <input placeholder="title" #title />
+    <input placeholder="price" #price />
+    <input placeholder="category" #category />
+
+    <button (click)="addProduct(title.value, price.value, category.value)">
+      Add
+    </button>
+  </div>
+  <ul>
+    <li *ngFor="let product of products$ | async">{{ product | json }}</li>
+  </ul>
+</div>

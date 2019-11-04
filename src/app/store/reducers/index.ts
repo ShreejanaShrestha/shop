@@ -6,10 +6,10 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import { ProductState } from './product.reducer';
+import { CatalogState, productReducer } from './catalog.reducer';
 
 export interface State {
-  products: ProductState;
+  products: CatalogState;
 }
 
 export const reducers: ActionReducerMap<State> = {

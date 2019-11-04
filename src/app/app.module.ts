@@ -5,14 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
-import { CatalogComponent } from './catalog/catalog.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
+import { CatalogModule } from './components/catalog/catalog.module';
 
 @NgModule({
   declarations: [AppComponent, CatalogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, { metaReducers })
+    StoreModule.forRoot({}),
+    CatalogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
