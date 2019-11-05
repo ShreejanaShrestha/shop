@@ -21,10 +21,6 @@ export const metaReducers: MetaReducer<AppState>[] = !environment.production
 
 export const selectCatalog = createFeatureSelector<CatalogState>('catalog');
 
-// export const selectCatalog = (state: AppState) => state.catalog;
-
-// export const selectCatalog = (state: AppState) => state.catalog;
-
 export const selectAllProducts = createSelector(
   selectCatalog,
   (state: CatalogState) => state.products

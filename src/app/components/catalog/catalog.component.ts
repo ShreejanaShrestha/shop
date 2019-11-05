@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { Store } from '@ngrx/store';
 import { CatalogState } from '../../store/reducers/catalog.reducer';
-import { addProduct } from '../../store/actions/catalog.action';
+import { addProduct, loadProducts } from '../../store/actions/catalog.action';
 import * as fromStore from '../../store';
 import { Observable, from } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { selectAllProducts } from '../../store';
 
 @Component({
   selector: 'app-catalog',
@@ -14,12 +16,14 @@ import { map, tap } from 'rxjs/operators';
 })
 export class CatalogComponent implements OnInit {
   products$: Observable<Product[]>;
-  constructor(private store: Store<CatalogState>) {}
+  constructor(
+    private store: Store<CatalogState>,
+    private db: AngularFirestore
+  ) {}
 
   ngOnInit() {
-    this.products$ = this.store.pipe(
-      map(state => fromStore.selectAllProducts(state))
-    );
+    this.store.dispatch(loadProducts());
+    this.products$ = this.store.select(selectAllProducts);
   }
 
   addProduct(title: string, price: string, category: string) {

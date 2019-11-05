@@ -5,7 +5,13 @@ import { Product } from '../../models/product.model';
 // export const EDIT_PRODUCT = '[PRODUCT] Edit Item';
 // export const DELETE_PRODUCT = '[PRODUCT] Delete Item';
 
+export const loadProducts = createAction('[CATALOG] Load Items');
+export const loadProductsSuccess = createAction(
+  '[CATALOG] Load Items Successful',
+  props<{ data: Product[] }>()
+);
+
 export const addProduct = createAction(
-  '[PRODUCT] Add Item',
+  '[CATALOG] Add Item',
   props<{ product: Product }>()
 );
