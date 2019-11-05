@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { CatalogModule } from './components/catalog/catalog.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, CatalogComponent],
@@ -14,7 +16,11 @@ import { CatalogModule } from './components/catalog/catalog.module';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
-    CatalogModule
+    CatalogModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

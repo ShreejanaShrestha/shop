@@ -1,22 +1,28 @@
 import * as fromProductAction from '../actions/catalog.action';
 import { Product } from '../../models/product.model';
-import { createReducer, on } from '@ngrx/store';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { createReducer, createSelector, on } from '@ngrx/store';
 
 export interface CatalogState {
-  catalog: Product[];
+  products: Product[];
+  loaded: boolean;
+  loading: boolean;
 }
+
 const initialState: CatalogState = {
-  catalog: [{ title: 'item1', price: '100', category: 'men' }]
+  products: [{ title: 'item1', price: '100', category: 'men' }],
+  loaded: false,
+  loading: true
 };
 
-export const productReducer = createReducer(
+export const catalogReducer = createReducer(
   initialState,
-  on(fromProductAction.addProduct, state => ({
-    ...state
+  on(fromProductAction.addProduct, (state, { product }) => ({
+    loaded: true,
+    loading: false,
+    products: [...state.products, product]
   }))
 );
 
-// export function reducer(state: CatalogState | undefined, action: Action) {
-//   return productReducer(state, action);
-// }
+export const getCatalogProducts = (state: CatalogState) => state.products;
+export const getCatalogLoaded = (state: CatalogState) => state.loaded;
+export const getCatalogLoading = (state: CatalogState) => state.loading;

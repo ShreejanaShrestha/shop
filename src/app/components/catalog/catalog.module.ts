@@ -6,7 +6,7 @@ import * as fromCatalog from '../../store/reducers/catalog.reducer';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('catalog', fromCatalog.productReducer)
+    StoreModule.forFeature('catalog', fromCatalog.catalogReducer)
   ]
 })
 export class CatalogModule {}
